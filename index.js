@@ -92,6 +92,12 @@ async function run() {
             const result = await userscollection.find().toArray()
             res.send(result)
         })
+        app.get('/userProfile/:email', async (req, res) => {
+            const email = req.params.email;
+            const query = { email: email }
+            const result = await userscollection.findOne(query);
+            res.send(result)
+        })
         app.get('/users/admin/:email', verifyJWT, async (req, res) => {
             const email = req.params.email;
             // console.log('/user/admin/email', email)
